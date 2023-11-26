@@ -144,6 +144,7 @@ rich==13.7.0
 rope @ file:///C:/ci_311/rope_1678402524346/work
 rpds-py @ file:///C:/b/abs_76j4g4la23/croot/rpds-py_1698947348047/work
 Rtree @ file:///C:/ci_311/rtree_1676455758391/work
+scikit-learn==0.24.1
 Send2Trash @ file:///C:/b/abs_08dh49ew26/croot/send2trash_1699371173324/work
 sip @ file:///C:/b/abs_edevan3fce/croot/sip_1698675983372/work
 six @ file:///tmp/build/80754af9/six_1644875935023/work

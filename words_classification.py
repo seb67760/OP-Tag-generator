@@ -3,7 +3,6 @@
 
 # In[1]:
 import pandas as pd
-#import sys
 import pickle
 
 from nltk.tokenize import RegexpTokenizer
@@ -14,30 +13,26 @@ import streamlit as st
 
 # In[2]:
 
-# loading list_rare_words
-path = 'C:\\Users\\Sebastien\\_Projet 05\\data\\cleaned\\list_rare_words.csv'
-list_rare_words = pd.read_csv(path)
+filename = r'./data/cleaned/list_rare_words.csv'
+
+list_rare_words = pd.read_csv(filename)
 list_rare_words = list_rare_words['words_list'].to_list()
 
 # In[3]:
 
-# loading Multilabelbinizer fitted model
-
-#sys.path.append('/model_saved')
-
-filename = r'C:/Users/Sebastien/_Projet 05/model_saved/mlb_model'
+filename = r'./model_saved/mlb_model'
 mlb_model_loaded = pickle.load(open(filename, 'rb'))
 
 # In[4]:
 
 # loading TF-IDF pipe fitted model
-filename = r'C:/Users/Sebastien/_Projet 05/model_saved/tf_idf_pipe_model'
+filename = r'./model_saved//tf_idf_pipe_model'
 tf_idf_model_loaded = pickle.load(open(filename, 'rb'))
 
 # In[5]:
 
 # OVR TF_IDF classification
-filename = r'C:/Users/Sebastien/_Projet 05/model_saved/ovr_with_tf_idf_model'
+filename = r'./model_saved/ovr_with_tf_idf_model'
 ovr_with_tf_idf_model_loaded = pickle.load(open(filename, 'rb'))
 
 # In[6]:
