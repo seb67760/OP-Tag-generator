@@ -79,7 +79,7 @@ nbclient @ file:///C:/b/abs_cal0q5fyju/croot/nbclient_1698934263135/work
 nbconvert @ file:///C:/b/abs_17p29f_rx4/croot/nbconvert_1699022793097/work
 nbformat @ file:///C:/b/abs_5a2nea1iu2/croot/nbformat_1694616866197/work
 nest-asyncio @ file:///C:/ci_311/nest-asyncio_1676423519896/work
-nltk @ file:///C:/b/abs_a638z6l1z0/croot/nltk_1688114186909/work
+nltk @ pip install nltk
 notebook @ file:///C:/b/abs_e2qn6c85jb/croot/notebook_1690985290943/work
 notebook_shim @ file:///C:/b/abs_a5xysln3lb/croot/notebook-shim_1699455926920/work
 numpy==1.26.2
