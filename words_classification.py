@@ -5,10 +5,9 @@
 import pandas as pd
 import pickle
 
-from nltk.tokenize import RegexpTokenizer
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer, PorterStemmer
-
+#from nltk.tokenize import RegexpTokenizer
+#from nltk.corpus import stopwords
+import nltk
 import streamlit as st
 
 nltk.download("popular")
@@ -38,7 +37,7 @@ ovr_with_tf_idf_model_loaded = pickle.load(open(filename, 'rb'))
 
 # In[6]:
 
-stop_words = set(stopwords.words('english'))
+stop_words = set(nltk.corpus.stopwords.words('english'))
 
 # In[7]:
 
@@ -81,7 +80,7 @@ def process_text(doc,
     doc = doc.lower().strip()
     
     # tokenize
-    tokenizer = RegexpTokenizer(r"\w+")
+    tokenizer = nltk.tokenize.RegexpTokenizer(r"\w+")
     raw_tokens_list = tokenizer.tokenize(doc)
     
     # classics stop words
@@ -107,10 +106,10 @@ def process_text(doc,
     
     # stem or lem
     if lemm_or_stemm == "lem" :
-        trans = WordNetLemmatizer()
+        trans = nltk.stem.WordNetLemmatizer()
         trans_text = [trans.lemmatize(i) for i in alpha_tokens ]
     else:
-        trans = PorterStemmer()
+        trans = nltk.stem.PorterStemmer()
         trans_text = [trans.stem(i) for i in alpha_tokens ]
     
     #####################################################
