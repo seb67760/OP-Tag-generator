@@ -6,11 +6,12 @@ import pandas as pd
 import pickle
 
 from nltk.tokenize import RegexpTokenizer
-#from nltk.corpus import stopwords
+from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 
 import streamlit as st
 
+nltk.download("popular")
 # In[2]:
 
 filename = r'./data/cleaned/list_rare_words.csv'
