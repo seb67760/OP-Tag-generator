@@ -1,2 +1,2 @@
 streamlit==1.16.0
-nltk
+nltk==3.5
