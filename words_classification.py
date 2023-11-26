@@ -10,7 +10,7 @@ import pickle
 import nltk
 import streamlit as st
 
-nltk.download("popular")
+#nltk.download("popular")
 # In[2]:
 
 filename = r'./data/cleaned/list_rare_words.csv'
