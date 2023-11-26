@@ -10,7 +10,6 @@ import pickle
 import nltk
 import streamlit as st
 
-pip install --upgrade pip
 #nltk.download("popular")
 # In[2]:
 
