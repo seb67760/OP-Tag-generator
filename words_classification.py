@@ -6,7 +6,7 @@ import pandas as pd
 import pickle
 
 from nltk.tokenize import RegexpTokenizer
-from nltk.corpus import stopwords
+#from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 
 import streamlit as st
