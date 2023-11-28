@@ -1,12 +1,10 @@
-from flask import Flask
-from flask_restful import reqparse, Api, Resource
+from flask import Flask, request
 import pickle
 import pandas as pd
-import numpy as np
+#import numpy as np
 import nltk
 
 app = Flask(__name__)
-api = Api(app)
     
 filename = r'./data/cleaned/list_rare_words.csv'
 
@@ -30,46 +28,21 @@ tf_idf_model_loaded = pickle.load(open(filename, 'rb'))
 filename = r'./model_saved/ovr_with_tf_idf_model'
 ovr_with_tf_idf_model_loaded = pickle.load(open(filename, 'rb'))
 
-# argument parsing
-parser = reqparse.RequestParser()
-parser.add_argument('query')
-
-
 stop_words = set(nltk.corpus.stopwords.words('english'))
 
 # In[7]:
 
+    
 def process_text(doc,
-                   rejoin=True,
-                   lemm_or_stemm="stem",
-                   list_rare_words=None,
-                   min_len_word=3,
-                   force_is_alpha=True,
-                   eng_words= None,
-                   extra_words= stop_words) :
+                 rejoin=True,
+                 lemm_or_stemm="stem",
+                 list_rare_words=None,
+                 min_len_word=3,
+                 force_is_alpha=True,
+                 eng_words= None,
+                 extra_words= stop_words) :
     
-   
-    """cf process_text_1 but with list_unique_words, min_len_word and force_is_alpha
-    
-    positional arguments :
-    ----------------------
-    doc : str : the document (aka a text in str format) to process
-    
-    opt args :
-    ----------------------
-    rejoin : bool : if True return a string else return the list of tokens - default = False
-    lemm_or_stemm : str : if lem do lemmentize else stemmentize - default = stemmentize
-    list_rare_words : list : a list of rare wrods to exclude - default = None
-    min_len__word : int : the minimum length of wrods to not exlude - default = 3
-    force_is_alpha : int : if 1, exclude all tokens with a numeric character - default = True
-    eng_words : list : list of english words - default = None
-    extra_words : list : exclude an extra list - default = None
-    
-    return :
-    ----------------------
-    a string (if rejoin is True) or a list of tokens
-    """
-    
+      
     # list_unique_words
     if not list_rare_words:
         list_rare_words = []
@@ -85,7 +58,6 @@ def process_text(doc,
     cleaned_tokens_list = [w for w in raw_tokens_list if w not in stop_words]
     
     #####################################################
-    #####################################################
     
     # no rare tokens
     non_rare_tokens = [w for w in cleaned_tokens_list if w not in list_rare_words]
@@ -100,7 +72,6 @@ def process_text(doc,
         alpha_tokens = more_than_N
         
     #####################################################
-    #####################################################
     
     # stem or lem
     if lemm_or_stemm == "lem" :
@@ -111,7 +82,6 @@ def process_text(doc,
         trans_text = [trans.stem(i) for i in alpha_tokens ]
     
     #####################################################
-    #####################################################
     
     # in english
     if eng_words :
@@ -120,7 +90,6 @@ def process_text(doc,
         engl_text = trans_text    
     
     #####################################################
-    #####################################################
     
     # drop extra_words tokens
     if extra_words :
@@ -128,7 +97,6 @@ def process_text(doc,
     else:
         final = engl_text
     
-    #####################################################
     #####################################################
     
     # manage return type
@@ -140,61 +108,27 @@ def process_text(doc,
 
 
 
-# argument parsing
-parser = reqparse.RequestParser()
-parser.add_argument('query',location=('args'))      #('json', 'query'))
-
-
-
-class PredictSentiment(Resource):
+@app.route("/predict", methods=['POST'])
     
-    def get(self):
+def predict():
 
-        # use parser and find the user's query
-        args = parser.parse_args()
-        user_query = args['query']
-        
-     # Text to dataframe
-        texte = np.array([user_query])
-        texte = pd.DataFrame(texte, columns=['text'])
-        #Process text
-        data_step1 = texte.text.apply(process_text, list_rare_words= list_rare_words)
-        data_step1 = pd.DataFrame(data_step1, columns=['text'])
-        # Classification step
-        data_step2 = pd.DataFrame(tf_idf_model_loaded.transform(data_step1['text']))
-        data_step3 = ovr_with_tf_idf_model_loaded.predict(data_step2)
-        # Multilabelbinarizer inverse transform
-        data_final = ", ".join(mlb_model_loaded.inverse_transform(data_step3)[0])
-        
-        output = {'prediction': data_final}
-        return output
+    # use texte
+    texte = request.text['texte']
+    
+    # Text to dataframe
+    #texte = np.array([user_query])
+    texte = pd.DataFrame(texte, columns=['text'])
+    #Process text
+    data_step1 = texte.text.apply(process_text, list_rare_words= list_rare_words)
+    data_step1 = pd.DataFrame(data_step1, columns=['text'])
+    # Classification step
+    data_step2 = pd.DataFrame(tf_idf_model_loaded.transform(data_step1['text']))
+    data_step3 = ovr_with_tf_idf_model_loaded.predict(data_step2)
+    # Multilabelbinarizer inverse transform
+    data_final = ", ".join(mlb_model_loaded.inverse_transform(data_step3)[0])
+    
+    return jsonify({"predictions" : data_final})
 
-"""
-        # use parser and find the user's query
-        args = parser.parse_args()
-        user_query = args['query']
-        # vectorize the user's query and make a prediction
-        uq_vectorized = model.vectorizer_transform(
-            np.array([user_query]))
-        prediction = model.predict(uq_vectorized)
-        pred_proba = model.predict_proba(uq_vectorized)
-        # Output 'Negative' or 'Positive' along with the score
-        if prediction == 0:
-            pred_text = 'Negative'
-        else:
-            pred_text = 'Positive'
-            
-        # round the predict proba value and set to new variable
-        confidence = round(pred_proba[0], 3)
-        # create JSON object
-        output = {'prediction': pred_text, 'confidence': confidence}
-        return output
-
-"""
-
-api.add_resource(PredictSentiment, '/')
-# example of another endpoint
-#api.add_resource(PredictRatings, '/ratings')
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False)
+    app.run(host="0.0.0.0", port=8080)
