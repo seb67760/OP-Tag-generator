@@ -11,15 +11,12 @@ def on_click():
     # Text requested
     text_input = {"texte_input": st.session_state.user_input}
     
-    #req = requests.post("http://127.0.0.1:8080/predict", texte_input= text_input)
-    #resultat = req.json()
-    #rec = resultat["predictions"]
+    #req = requests.post("http://127.0.0.1:8080/predict", texte_input= text_input["texte_input"])
+    resultat = req.json()
+    rec = resultat["predictions"]
     
-    #st.session_state.user_output = rec
-    st.session_state.user_output = text_input["texte_input"]
-
-
-
+    st.session_state.user_output = rec
+    
 st.title('Text classification') 
 
 st.text_area("Text for classification", key="user_input", height= 100)
