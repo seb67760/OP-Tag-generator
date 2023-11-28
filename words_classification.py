@@ -13,9 +13,8 @@ def on_click():
 
 
     filepath = "tests/files/text.txt"
-    response = client.post(
-    "/predict", files={"file": ("filename", open(filepath, "rb"), "text/plain")}
-    )
+    #response = client.post(
+    #"/predict", files={"file": ("filename", open(filepath, "rb"), "text/plain")})
 
 
     req = requests.post("http://127.0.0.1:8080/predict") #, = text_input)
