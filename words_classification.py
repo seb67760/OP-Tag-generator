@@ -16,7 +16,7 @@ def on_click():
     #rec = resultat["predictions"]
     
     #st.session_state.user_output = rec
-    st.session_state.user_output = text_input
+    st.session_state.user_output = text_input["texte_input"]
 
 
 
