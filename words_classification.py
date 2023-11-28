@@ -11,7 +11,7 @@ def on_click():
     # Text requested
     text_input = {"text_input": st.session_state.user_input}
     
-    req = requests.post("http://127.0.0.1:8080/predict", texte_input= text_input["texte_input"])
+    req = requests.post("http://127.0.0.1:8080/predict", text_input= text_input)
     resultat = req.json()
     rec = resultat["predictions"]
     #resultat
