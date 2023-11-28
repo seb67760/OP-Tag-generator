@@ -12,7 +12,7 @@ def on_click():
     
     texte = [st.session_state.user_input]
     
-    req = requests.post("http://127.0.0.1:8080/predict", text=texte)
+    req = requests.post("http://127.0.0.1:8080/predict", texte_input=texte)
     resultat = req.json()
     rec = resultat["predictions"]
     
