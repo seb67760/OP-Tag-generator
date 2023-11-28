@@ -10,15 +10,25 @@ import requests
 def on_click():
     # Text requested
     
-    text_input = "hello python" #{"text_input": st.session_state.user_input}
+    #text_input = "hello python" #{"text_input": st.session_state.user_input}
 
 
     #filepath = "tests/files/text.txt"
 
     
     #req = requests.post("http://127.0.0.1:8080/predict", = text_input)
+
+    data = '{"text":"This abstract will be about Artificial Intelligence and ..."}'
+
+    req = requests.post(url=""https://github.com/seb67760/OP-Tag-generator/master/backend_api.py",                         
+                       data  = data,
+                       headers = {'Content-Type':'application/json'})
+
+    req.json()
+
+
     
-    req = requests.post("https://github.com/seb67760/OP-Tag-generator/master/backend_api.py" , data = {"text": "hello python"})
+    #req = requests.post("https://github.com/seb67760/OP-Tag-generator/master/backend_api.py" , data = {"text": "hello python"})
     
     resultat = req.json()
     rec = resultat["predictions"]
