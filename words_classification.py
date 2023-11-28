@@ -18,7 +18,7 @@ def on_click():
 
     #req = requests.post("http://127.0.0.1:8080/predict", = text_input)
     
-    req = requests.post("https://github.com/seb67760/OP-Tag-generator/master/backend_api.py" , json =  {"text_input": st.session_state.user_input})
+    req = requests.post("https://github.com/seb67760/OP-Tag-generator/master/backend_api.py" , json =  {"text_input": "python is incredible"})
     
     resultat = req.json()
     rec = resultat["predictions"]
