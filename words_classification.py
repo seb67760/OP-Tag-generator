@@ -20,7 +20,7 @@ def on_click():
 
     data = '{"text":"This abstract will be about Artificial Intelligence and ..."}'
 
-    req = requests.post(url=""https://github.com/seb67760/OP-Tag-generator/master/backend_api.py",                         
+    req = requests.post(url="https://github.com/seb67760/OP-Tag-generator/master/backend_api.py",                         
                        data  = data,
                        headers = {'Content-Type':'application/json'})
 
