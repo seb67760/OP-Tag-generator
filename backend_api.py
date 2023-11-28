@@ -117,7 +117,7 @@ def process_text(doc,
 def predict():
 
     # use texte
-    texte = request.form.get['text_input']
+    texte = request.data #form.get['text_input']
     
     # Text to dataframe
     #texte = np.array([user_query])
