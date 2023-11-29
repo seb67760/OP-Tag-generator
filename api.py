@@ -135,7 +135,7 @@ def process_text(doc,
     if rejoin :
         return " ".join(final)
     
-#    return final  
+ 
     return trans_text
 
 
@@ -168,46 +168,6 @@ def api_endpoint():
     #return output
     return data_final #jsonify({"predictions" : data_final})
     
-     
-    
-    
-    #return jsonify({'message': 'Texte reçu avec succès', 'texte': texte_req})
-
-        # Faire quelque chose avec le texte (ici, simplement le renvoyer)
-        #return jsonify({'message': 'Texte reçu avec succès', 'texte': texte})
-
-    #except Exception as e:
-        #return jsonify({'error': str(e)})
-    
-#class PredictSentiment(Resource):
-    
-#    def get(self):
-
-        # use parser and find the user's query
-        #args = parser.parse_args()
-        #user_query = args['query']
-        
-"""     # Text to dataframe
-    texte = np.array([texte_req])
-    texte = pd.DataFrame(texte, columns=['text'])
-    #Process text
-    data_step1 = texte.text.apply(process_text, list_rare_words= list_rare_words)
-    data_step1 = pd.DataFrame(data_step1, columns=['text'])
-    # Classification step
-    data_step2 = pd.DataFrame(tf_idf_model_loaded.transform(data_step1['text']))
-    data_step3 = ovr_with_tf_idf_model_loaded.predict(data_step2)
-    # Multilabelbinarizer inverse transform
-    data_final = ", ".join(mlb_model_loaded.inverse_transform(data_step3)[0])
-    
-    output = {'prediction': data_final}
-    return output
-"""
-
-
-#api.add_resource(PredictSentiment, '/')
-# example of another endpoint
-#api.add_resource(PredictRatings, '/ratings')
-
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
     
