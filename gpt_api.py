@@ -5,7 +5,7 @@ def api_endpoint(texte):
     url = 'https://api-test-67.azurewebsites.net/api/endpoint'     #'https://api-test-67.scm.azurewebsites.net:443/api/endpoint'  
     data = {'texte': texte}
     response = requests.post(url, data=data)
-    return response.text #.json()
+    return response.json()
     #st.session_state.user_output = response
 
 
