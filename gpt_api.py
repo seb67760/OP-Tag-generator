@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 
 def api_endpoint(texte):
-    url = 'https://api-test-67.azurewebsites.net:8000/api/endpoint'     #'https://api-test-67.scm.azurewebsites.net:443/api/endpoint'  
+    url = 'https://api-test-67.azurewebsites.net:8080/api/endpoint'     #'https://api-test-67.scm.azurewebsites.net:443/api/endpoint'  
     data = {'texte': texte}
     response = requests.post(url, data=data)
     return response.text #.json()
