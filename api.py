@@ -169,5 +169,5 @@ def api_endpoint():
     return data_final #jsonify({"predictions" : data_final})
     
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080, debug=True, use_reloader=False)
+    app.run(debug=True, use_reloader=False) #host="0.0.0.0", port=8080, 
     
