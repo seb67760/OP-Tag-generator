@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 
 def api_endpoint(texte):
-    url = 'http://127.0.0.1:5000/api/endpoint'  
+    url = ''https://classification-test67.azurewebsites.net/api/endpoint'     #http://127.0.0.1:5000/api/endpoint'  
     data = {'texte': texte}
     response = requests.post(url, data=data)
     return response.text #.json()
