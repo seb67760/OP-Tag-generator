@@ -5,7 +5,7 @@ def api_endpoint(texte):
     url = 'https://api-test-67.azurewebsites.net/api/endpoint'
     data = {'texte': texte}
     
-    url2 = 'http://127.0.0.1:5000/test'
+    url2 = 'http://127.0.0.1:8000/test'
     
     response = requests.get(url2)
     #response = requests.post(url, data=data)
