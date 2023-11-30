@@ -2,8 +2,8 @@ import requests
 import streamlit as st
 
 def api_endpoint(texte):
-    url = 'https://api-test-67.azurewebsites.net/api/endpoint'
-    data = {'texte': texte}
+    #url = 'https://api-test-67.azurewebsites.net/api/endpoint'
+    #data = {'texte': texte}
     
     url2 = 'https://api-test-67.azurewebsites.net/test'
     
