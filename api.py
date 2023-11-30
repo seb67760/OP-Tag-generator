@@ -174,5 +174,6 @@ def hello():
     return jsonify(data)
     
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, port=8080) # use_reloader=False
+    app.run(port=8000, debug=True)
+    # app.run(host="0.0.0.0", debug=True, port=8080) # use_reloader=False
     
