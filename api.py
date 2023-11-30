@@ -167,7 +167,12 @@ def api_endpoint():
     #return jsonify({'texte': data_final})
     #return output
     return data_final #jsonify({"predictions" : data_final})
+
+@app.route('/test', methods=['GET'])
+def hello():
+    data = {"data": "Hello World"}
+    return jsonify(data)
     
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8080) 
+    app.run(host="0.0.0.0", debug=True, port=8080) # use_reloader=False
     
