@@ -4,7 +4,11 @@ import streamlit as st
 def api_endpoint(texte):
     url = 'https://api-test-67.azurewebsites.net/api/endpoint'
     data = {'texte': texte}
-    response = requests.post(url, data=data)
+    
+    url2 = 'https://api-test-67.azurewebsites.net/test'
+    
+    response = requests.get(url2)
+    #response = requests.post(url, data=data)
     return response #.text json()
     #st.session_state.user_output = response
 
