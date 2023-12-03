@@ -16,19 +16,19 @@ list_rare_words = list_rare_words['words_list'].to_list()
 
 # In[3]:
 
-filename = r'./model_saved/mlb_model'
+filename = r'./model_saved/mlb_model.pkl'
 mlb_model_loaded = pickle.load(open(filename, 'rb'))
 
 # In[4]:
 
 # loading TF-IDF pipe fitted model
-filename = r'./model_saved//tf_idf_pipe_model'
+filename = r'./model_saved//tf_idf_pipe_model.pkl'
 tf_idf_model_loaded = pickle.load(open(filename, 'rb'))
 
 # In[5]:
 
 # OVR TF_IDF classification
-filename = r'./model_saved/ovr_with_tf_idf_model'
+filename = r'./model_saved/ovr_with_tf_idf_model.pkl'
 ovr_with_tf_idf_model_loaded = pickle.load(open(filename, 'rb'))
 
 # In[6]:
