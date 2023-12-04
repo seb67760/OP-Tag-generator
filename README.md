@@ -6,10 +6,10 @@ This API transforms a sentence into one or more tags.
 # Technologies
 Project is created with:
 
-Flask and Flask_RestFul
-Streamlit
-Pickle
-Python (Numpy, Pandas, NLTK, ...)
+Flask and Flask_RestFul  
+Streamlit  
+Pickle  
+Python (Numpy, Pandas, NLTK, BeautifulSoup, ...)
 
 # Files
 
