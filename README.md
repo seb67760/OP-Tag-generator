@@ -13,5 +13,5 @@ Python (Numpy, Pandas, NLTK, BeautifulSoup, ...)
 
 # Files
 
-api.py : API files to run in local
+api.py : API files to run in local  
 words_classification.py: file to run with Streamlit (linked file)
